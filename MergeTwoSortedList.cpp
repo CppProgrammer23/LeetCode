@@ -1,0 +1,29 @@
+
+struct ListNode 
+{
+      int val;
+      ListNode *next;
+      ListNode() : val(0), next(nullptr) {}
+      ListNode(int x) : val(x), next(nullptr) {}
+      ListNode(int x, ListNode *next) : val(x), next(next) {}
+ };
+
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
+{
+    ListNode* result;
+    if(l1 == nullptr)
+        return l2;
+    if(l2 == nullptr)
+        return l1;
+    if(l1-> val > l2->val)
+    {
+        result = l2;
+        result->next = mergeTwoLists(l1, l2->next);
+    }
+    else
+    {
+        result = l1;
+        result->next = mergeTwoLists(l1->next, l2);
+    }
+    return result;
+}
